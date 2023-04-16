@@ -1,3 +1,4 @@
+const bombExplodeAudio = new Audio("./explosion.mp3");
 //players' score
 let score = 0;
 let currentScore = 0;
@@ -16,7 +17,6 @@ function createGridElements(){
 }
 //calling the function to create 81 cells
 createGridElements();
-
 
 //function to create random number between 1 to 81
 function makeRandomNumber(){
@@ -59,13 +59,16 @@ function showTheBombs(curScore){
         bomb.style.backgroundPosition = "center";
         bomb.style.backgroundColor = "red";
     }
+    bombExplodeAudio.play();
     showResult("GAME OVER!!! Your score is "+curScore);
 }
-
+//when the Game loads we reset all the functions.
+window.addEventListener("DOMContentLoaded",reset);
 //reset button functionality
 function reset(){
     //element array is used to check if a cell is clicked more than 1 time
     //then score should not increase
+    console.log("reset");
     elementArray.length = 0;
     let result = [];
     score = 0;
